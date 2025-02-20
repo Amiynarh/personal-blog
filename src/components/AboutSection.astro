@@ -1,0 +1,128 @@
+---
+---
+
+<section class="about">
+  <div class="content">
+    <div class="profile">
+      <div class="profile-image">
+        <img src="https://github.com/aminalawal.png" alt="Amin Alawal" />
+      </div>
+      <div class="profile-content">
+        <h2>This is Me</h2>
+        <p>
+          Hey there! I'm Amin Alawal, a cloud engineer and DevOps enthusiast passionate about simplifying complex tech concepts. 
+          Through this blog, I share my experiences, insights, and lessons learned from the trenches of cloud architecture and DevOps practices.
+        </p>
+      </div>
+    </div>
+    <div class="now-section">
+      <h3>Currently</h3>
+      <p>
+        🚀 Building cloud solutions and sharing knowledge<br>
+        📝 Writing about DevOps best practices<br>
+        🎥 Creating technical content on YouTube
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 4rem 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 3rem;
+  }
+
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .profile {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+    align-items: center;
+  }
+
+  .profile-image {
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .profile-image::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .profile-image img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent);
+    box-shadow: var(--card-shadow);
+  }
+
+  .profile-content {
+    flex-grow: 1;
+  }
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+  }
+
+  .now-section {
+    background: var(--bg-tertiary);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+  }
+
+  .now-section h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .now-section p {
+    margin: 0;
+    line-height: 2;
+  }
+
+  @media (max-width: 768px) {
+    .profile {
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .profile-image {
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,223 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../components/FormattedDate.astro';
+import AboutSection from '../components/AboutSection.astro';
+import NewsletterCTA from '../components/NewsletterCTA.astro';
+import YouTubeSection from '../components/YouTubeSection.astro';
+
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const posts = allPosts.slice(0, 6); // Show only the 6 most recent posts
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <AboutSection />
+      
+      <section class="blog-posts">
+        <div class="section-header">
+          <h2>Latest Posts</h2>
+          <a href="/blog" class="view-all">View All Posts →</a>
+        </div>
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>
+                <img width={720} height={360} src={post.data.heroImage} alt="" />
+                <h4 class="title">{post.data.title}</h4>
+                <p class="description">{post.data.description}</p>
+                <p class="date">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <NewsletterCTA />
+      <YouTubeSection />
+    </main>
+    <Footer />
+
+    <button id="theme-toggle" aria-label="Toggle dark mode">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 3V5M12 19V21M3 12H5M19 12H21M5.5 5.5L7 7M17 17L18.5 18.5M18.5 5.5L17 7M7 17L5.5 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </body>
+</html>
+
+<style>
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #000000;
+    --text-secondary: #444444;
+    --accent: #2337ff;
+  }
+
+  :root[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --accent: #6b7fff;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  main {
+    width: 960px;
+    max-width: calc(100% - 2em);
+    margin: auto;
+    padding: 3em 1em;
+  }
+
+  .blog-posts {
+    margin: 4rem 0;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .view-all {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul li {
+    margin-bottom: 2rem;
+  }
+
+  ul li a {
+    text-decoration: none;
+  }
+
+  ul li img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+  }
+
+  ul li:hover img {
+    transform: scale(1.02);
+  }
+
+  .title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+  }
+
+  .date {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+  }
+
+  #theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 50%;
+    padding: 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+  }
+
+  #theme-toggle:hover {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 720px) {
+    ul {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const theme = (() => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  })();
+
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+
+  window.localStorage.setItem('theme', theme);
+
+  const handleToggleClick = () => {
+    const element = document.documentElement;
+    element.setAttribute('data-theme',
+      element.getAttribute('data-theme') === 'light' ? 'dark' : 'light'
+    );
+
+    localStorage.setItem('theme',
+      element.getAttribute('data-theme')
+    );
+  }
+
+  document.getElementById('theme-toggle')
+    .addEventListener('click', handleToggleClick);
+</script>

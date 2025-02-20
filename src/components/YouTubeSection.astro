@@ -1,0 +1,77 @@
+---
+import { YOUTUBE_CHANNEL_URL } from '../consts';
+---
+
+<section class="youtube-section">
+  <h2>Latest Videos</h2>
+  <div class="video-container">
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/videoseries?list=UU"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <a href={YOUTUBE_CHANNEL_URL} class="channel-link" target="_blank">
+    View More Videos →
+  </a>
+</section>
+
+<style>
+  .youtube-section {
+    margin: 4rem 0;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    background: linear-gradient(45deg, var(--accent), var(--accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    background: var(--bg-tertiary);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border: none;
+  }
+
+  .channel-link {
+    display: block;
+    text-align: center;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .channel-link:hover {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+</style>
