@@ -5,31 +5,42 @@
   <div class="content">
     <div class="profile">
       <div class="profile-image">
-        <img src="https://github.com/aminalawal.png" alt="Amin Alawal" />
+        <img src="newprofile.png" alt="Amina lawal" />
       </div>
       <div class="profile-content">
         <h2>This is Me</h2>
         <p>
-          Hey there! I'm Amin Alawal, a cloud engineer and DevOps enthusiast passionate about simplifying complex tech concepts. 
-          Through this blog, I share my experiences, insights, and lessons learned from the trenches of cloud architecture and DevOps practices.
+          Hey there! I'm Amina lawal, a Cloud and DevOps Engineer focused on automation, reliability, and scalable solutions.  
+          This blog is where I document my journey—insights from building in the cloud, lessons from DevOps, and thoughts on technology’s role in shaping our world.
         </p>
       </div>
     </div>
     <div class="now-section">
       <h3>Currently</h3>
       <p>
-        🚀 Building cloud solutions and sharing knowledge<br>
-        📝 Writing about DevOps best practices<br>
-        🎥 Creating technical content on YouTube
+        - Building cloud solutions and sharing knowledge<br>
+        - Writing about DevOps best practices<br>
+        - Preparing to write some Certifications!
       </p>
     </div>
   </div>
 </section>
 
 <style>
+  :root {
+    --accent: #6C63FF; /* Modern purple accent */
+    --accent-dark: #4A47A3; /* Darker shade for gradients */
+    --text-primary: #2D2D2D; /* Dark gray for text */
+    --text-secondary: #555555; /* Lighter gray for secondary text */
+    --card-bg: #FFFFFF; /* White background for cards */
+    --bg-tertiary: #F8F9FA; /* Light gray for secondary backgrounds */
+    --border-color: #E0E0E0; /* Light border color */
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
   .about {
     padding: 4rem 2rem;
-    background: var(--card-bg);
+    background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%); /* Subtle gradient background */
     border-radius: 16px;
     box-shadow: var(--card-shadow);
     border: 1px solid var(--border-color);
@@ -62,7 +73,7 @@
     bottom: -8px;
     border: 2px solid var(--accent);
     border-radius: 50%;
-    opacity: 0.5;
+    opacity: 0.3;
   }
 
   .profile-image img {
@@ -72,6 +83,12 @@
     object-fit: cover;
     border: 4px solid var(--accent);
     box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .profile-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(108, 99, 255, 0.2);
   }
 
   .profile-content {
@@ -84,12 +101,14 @@
     background: linear-gradient(45deg, var(--accent), var(--accent-dark));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-family: 'Poppins', sans-serif; /* Modern font */
   }
 
   p {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-secondary);
+    font-family: 'Open Sans', sans-serif; /* Readable font */
   }
 
   .now-section {
@@ -97,12 +116,14 @@
     padding: 2rem;
     border-radius: 12px;
     margin-top: 2rem;
+    border-left: 4px solid var(--accent); /* Accent border */
   }
 
   .now-section h3 {
     color: var(--text-primary);
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif; /* Consistent font */
   }
 
   .now-section p {
